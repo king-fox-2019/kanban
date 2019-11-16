@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from './store'
 
 Vue.use(VueRouter)
 
@@ -7,31 +8,39 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: () => import(/* webpackChunkName: "home" */ './views/Home.vue')
+    component: () => import(/* webpackChunkName: "home" */ '@/views/Home.vue')
   },
   {
     path: '/kanban',
-    name: 'kanbanList',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
+    beforeEnter(to, from, next) {
+      store
+        .dispatch('authenticate')
+        .then(() => next())
+        .catch(() => next('/signin'))
+    },
     component: () =>
-      import(/* webpackChunkName: "kanbanlist" */ './views/Kanban.vue'),
+      import(/* webpackChunkName: "kanban" */ '@/views/Kanban.vue'),
     children: [
       {
+        path: '',
+        name: 'kanbanList',
+        component: () =>
+          import(
+            /* webpackChunkName: "kanbanlist" */ '@/components/KanbanList.vue'
+          )
+      },
+      {
         path: ':id',
-        component: import(
-          /* webpackChunkName: "kanbanlist" */ './components/TheKanban.vue'
-        )
+        name: 'theKanban',
+        component: () =>
+          import(
+            /* webpackChunkName: "thekanban" */ '@/components/TheKanban.vue'
+          )
       }
     ]
-  },
-  {
-    path: '/kanban/:id',
-    name: 'kanban',
-
-    component: () =>
-      import(/* webpackChunkName: "kanban" */ './views/Kanban.vue')
   },
   {
     path: '/signup',

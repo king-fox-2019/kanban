@@ -106,7 +106,9 @@ export default {
           email: this.email,
           password: this.password
         })
-        .then(() => this.$router.push('/kanban'))
+        .then(() => {
+          this.$router.push('/kanban')
+        })
         .catch(err => console.log(err))
     }
   }

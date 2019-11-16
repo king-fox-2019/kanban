@@ -33,6 +33,16 @@ $link: $primary;
 $link-invert: $primary-invert;
 $link-focus-border: $primary;
 
+$table-background-color: $success;
+$table-row-hover-background-color: #bbb3a7;
+$table-striped-row-even-background-color: #bbb3a7;
+$table-striped-row-even-hover-background-color: #a8a196;
+
+$background: $success;
+
+$border: $light;
+$border-hover: #bbb3a7;
+
 $colors: (
   'white': (
     $white,
@@ -76,7 +86,6 @@ $colors: (
   )
 );
 
-// $success: $green !default;
 // $warning: $yellow !default;
 // $danger: $red !default;
 

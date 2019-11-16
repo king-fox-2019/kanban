@@ -8,7 +8,9 @@
       </div>
     </section>
     <section class="section">
-      <router-view></router-view>
+      <div class="columns is-centered">
+        <router-view class="column"></router-view>
+      </div>
     </section>
   </div>
 </template>
