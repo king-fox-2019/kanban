@@ -1,12 +1,21 @@
 <template>
   <div>
-    <section class="section hero is-small is-primary">
+    <div class="hero is-primary">
       <div class="hero-body">
         <div class="container">
-          <h1 class="title">{{ 'Your Kanban List' }}</h1>
+          <h1 class="title">
+            {{
+              $route.path === '/kanban'
+                ? 'Your Kanban List'
+                : $store.state.kanban_name
+            }}
+          </h1>
         </div>
       </div>
-    </section>
+      <div class="hero-foot">
+        <KanbanTab></KanbanTab>
+      </div>
+    </div>
     <section class="section">
       <div class="columns is-centered">
         <router-view class="column"></router-view>
@@ -16,7 +25,13 @@
 </template>
 
 <script>
-export default {}
+import KanbanTab from '@/components/KanbanTab.vue'
+
+export default {
+  components: {
+    KanbanTab
+  }
+}
 </script>
 
 <style></style>

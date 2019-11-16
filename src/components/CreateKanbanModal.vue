@@ -4,14 +4,23 @@
     <div class="modal-card">
       <header class="modal-card-head has-background-info">
         <p class="modal-card-title has-text-light">Create new Todo</p>
-        <button class="delete" aria-label="close" @click="$emit('on-close-modal')"></button>
+        <button
+          class="delete"
+          aria-label="close"
+          @click="$emit('on-close-modal')"
+        ></button>
       </header>
       <section class="modal-card-body has-background-light">
         <form class="container">
           <div class="field">
             <label class="label">Kanban Name</label>
             <div class="control">
-              <input class="input" type="text" placeholder="X Kanban" v-model="kanban_name" />
+              <input
+                class="input"
+                type="text"
+                placeholder="X Kanban"
+                v-model="kanban_name"
+              />
             </div>
           </div>
           <div class="field">
@@ -28,8 +37,12 @@
         </form>
       </section>
       <footer class="modal-card-foot has-background-success">
-        <button class="button is-primary" @click="createKanban">Create New</button>
-        <button class="button is-light" @click="$emit('on-close-modal')">Cancel</button>
+        <button class="button is-primary" @click="createKanban">
+          Create New
+        </button>
+        <button class="button is-light" @click="$emit('on-close-modal')">
+          Cancel
+        </button>
       </footer>
     </div>
   </div>
@@ -45,7 +58,6 @@ export default {
   },
   methods: {
     createKanban() {
-      console.log('sini?')
       this.$store
         .dispatch('createKanban', {
           kanban_name: this.kanban_name,
@@ -57,5 +69,4 @@ export default {
 }
 </script>
 
-<style>
-</style>
+<style></style>

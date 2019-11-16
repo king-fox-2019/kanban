@@ -5,7 +5,9 @@
         <h5 class="title is-5">Your Kanban list is empty...</h5>
       </div>
     </div>
-    <button class="button is-primary" @click="modalCreate = true">Create new</button>
+    <button class="button is-primary" @click="modalCreate = true">
+      Create new
+    </button>
     <div class="table-container" v-if="kanbanList.length > 0">
       <table class="table is-striped is-hoverable is-fullwidth">
         <thead>
@@ -16,16 +18,23 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="kanban in kanbanList" :key="kanban.id" @click="onKanbanClick(kanban)">
-            <td>{{kanban.kanban_name}}</td>
-            <td>{{kanban.description}}</td>
-            <td>{{kanban.members}}</td>
+          <tr
+            v-for="kanban in kanbanList"
+            :key="kanban.id"
+            @click="onKanbanClick(kanban)"
+          >
+            <td>{{ kanban.kanban_name }}</td>
+            <td>{{ kanban.description }}</td>
+            <td>{{ kanban.members }}</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <CreateKanbanModal v-if="modalCreate" @on-close-modal="modalCreate = false"></CreateKanbanModal>
+    <CreateKanbanModal
+      v-if="modalCreate"
+      @on-close-modal="modalCreate = false"
+    ></CreateKanbanModal>
   </div>
 </template>
 
@@ -43,7 +52,6 @@ export default {
   },
   methods: {
     onKanbanClick(kanban) {
-      console.log(kanban)
       this.$router.push(`/kanban/${kanban.id}`)
     }
   },
@@ -58,7 +66,7 @@ export default {
 }
 </script>
 
-<style lang="scss" >
+<style lang="scss">
 tbody tr:hover {
   cursor: pointer;
 }

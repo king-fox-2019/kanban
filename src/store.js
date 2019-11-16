@@ -8,7 +8,9 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     userEmail: null,
-    kanbanList: []
+    kanbanList: [],
+    kanban_name: '',
+    kanban_tab: 'doing'
   },
   mutations: {
     SET_USER_EMAIL(state, userEmail) {
@@ -16,6 +18,12 @@ export default new Vuex.Store({
     },
     SET_KANBAN_LIST(state, kanbanList) {
       state.kanbanList = kanbanList
+    },
+    SET_KANBAN_NAME(state, kanban_name) {
+      state.kanban_name = kanban_name
+    },
+    SWITCH_KANBAN_TAB(state, kanban_tab) {
+      state.kanban_tab = kanban_tab
     }
   },
   actions: {
@@ -101,6 +109,14 @@ export default new Vuex.Store({
         })
         context.commit('SET_KANBAN_LIST', kanbanSnapshot)
       })
+    },
+    getKanbanName(context, id) {
+      db.collection('kanbans')
+        .doc(id)
+        .get()
+        .then(kanbanRef => {
+          context.commit('SET_KANBAN_NAME', kanbanRef.data().kanban_name)
+        })
     }
   },
   modules: {}
