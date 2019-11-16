@@ -29,7 +29,7 @@ const routes = [
         name: 'kanbanList',
         component: () =>
           import(
-            /* webpackChunkName: "kanbanlist" */ '@/components/KanbanList.vue'
+            /* webpackChunkName: "kanbanlist" */ '@/components/kanban/KanbanList.vue'
           )
       },
       {
@@ -37,7 +37,7 @@ const routes = [
         name: 'theKanban',
         component: () =>
           import(
-            /* webpackChunkName: "thekanban" */ '@/components/TheKanban.vue'
+            /* webpackChunkName: "thekanban" */ '@/components/kanban/TheKanban.vue'
           )
       }
     ]

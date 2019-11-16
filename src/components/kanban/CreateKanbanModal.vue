@@ -37,7 +37,11 @@
         </form>
       </section>
       <footer class="modal-card-foot has-background-success">
-        <button class="button is-primary" @click="createKanban">
+        <button
+          class="button is-primary"
+          :class="{ 'is-loading': isLoading }"
+          @click="createKanban"
+        >
           Create New
         </button>
         <button class="button is-light" @click="$emit('on-close-modal')">
@@ -53,17 +57,19 @@ export default {
   data() {
     return {
       kanban_name: '',
-      description: ''
+      description: '',
+      isLoading: false
     }
   },
   methods: {
     createKanban() {
+      this.isLoading = true
       this.$store
         .dispatch('createKanban', {
           kanban_name: this.kanban_name,
           description: this.description
         })
-        .then(() => console.log('sukses!'))
+        .then(() => this.$emit('on-close-modal'))
     }
   }
 }

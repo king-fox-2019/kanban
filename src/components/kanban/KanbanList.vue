@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import CreateKanbanModal from '@/components/CreateKanbanModal'
+import CreateKanbanModal from '@/components/kanban/CreateKanbanModal'
 
 export default {
   components: {

@@ -94,7 +94,13 @@ export default new Vuex.Store({
       return db.collection('kanbans').add({
         kanban_name: payload.kanban_name,
         description: payload.description,
-        members: [context.state.userEmail]
+        members: [
+          context.state.userEmail ||
+            jwt.verify(
+              localStorage.getItem('access_email'),
+              process.env.VUE_APP_JWT_SECRET
+            )
+        ]
       })
     },
     getKanbans(context) {
@@ -116,6 +122,17 @@ export default new Vuex.Store({
         .get()
         .then(kanbanRef => {
           context.commit('SET_KANBAN_NAME', kanbanRef.data().kanban_name)
+        })
+    },
+    addTask(context, payload) {
+      return db
+        .collection('kanbans')
+        .doc(payload.id)
+        .collection('kanban_backlog')
+        .add({
+          title: payload.title,
+          desc: payload.desc,
+          assignee: payload.assignee
         })
     }
   },

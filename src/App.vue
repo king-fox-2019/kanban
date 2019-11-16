@@ -1,22 +1,37 @@
 <template>
   <div id="app">
     <Navbar></Navbar>
-    <router-view />
+    <router-view id="main" />
+    <Footer id="footer"></Footer>
   </div>
 </template>
 
 <script>
 import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
 
 export default {
   components: {
-    Navbar
+    Navbar,
+    Footer
   }
 }
 </script>
 
 <style lang="scss">
 @import '~bulma/sass/utilities/_all';
+
+#app {
+  position: relative;
+  min-height: 100vh;
+
+  #main {
+    min-height: 100vh;
+  }
+  // #footer {
+  //   margin-top: 12vh;
+  // }
+}
 
 $primary: #073b4c;
 $primary-invert: findColorInvert($primary);

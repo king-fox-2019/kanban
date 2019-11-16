@@ -1,5 +1,5 @@
 <template>
-  <nav class="tabs is-large is-boxed">
+  <nav class="tabs is-medium is-boxed">
     <div class="container">
       <ul>
         <li

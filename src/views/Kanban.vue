@@ -3,17 +3,17 @@
     <div class="hero is-primary">
       <div class="hero-body">
         <div class="container">
-          <h1 class="title">
+          <h1 class="title is-2">
             {{
-              $route.path === '/kanban'
-                ? 'Your Kanban List'
-                : $store.state.kanban_name
+            $route.path === '/kanban'
+            ? 'Your Kanban List'
+            : $store.state.kanban_name
             }}
           </h1>
         </div>
       </div>
       <div class="hero-foot">
-        <KanbanTab></KanbanTab>
+        <KanbanTab v-show="/\/kanban\/.+/.test($route.path)"></KanbanTab>
       </div>
     </div>
     <section class="section">
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import KanbanTab from '@/components/KanbanTab.vue'
+import KanbanTab from '@/components/kanban/KanbanTab.vue'
 
 export default {
   components: {
