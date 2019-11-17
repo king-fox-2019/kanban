@@ -149,9 +149,6 @@ export default {
       return arranger
     }
   },
-  beforeCreate() {
-    this.$store.dispatch('getKanbanName', this.$route.params.id)
-  },
   created() {
     db.collection('kanbans')
       .doc(this.$route.params.id)

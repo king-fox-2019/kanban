@@ -35,6 +35,9 @@ const routes = [
       {
         path: ':id',
         name: 'theKanban',
+        beforeEnter(to, from, next) {
+          store.dispatch('prepareKanban', to.params.id).finally(() => next())
+        },
         component: () =>
           import(
             /* webpackChunkName: "thekanban" */ '@/components/kanban/TheKanban.vue'

@@ -70,6 +70,8 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2'
+
 export default {
   data() {
     return {
@@ -83,6 +85,22 @@ export default {
   methods: {
     onSignUp() {
       this.isLoading = true
+      if (!this.email) {
+        this.isLoading = false
+        return Swal.fire(
+          'Email Empty',
+          'Email is required for sign in!',
+          'warning'
+        )
+      }
+      if (!this.password) {
+        this.isLoading = false
+        return Swal.fire(
+          'Password Empty',
+          'Password is required for sign in!',
+          'warning'
+        )
+      }
       this.$store
         .dispatch('signUp', {
           first_name: this.first_name,
@@ -93,7 +111,15 @@ export default {
         .then(() => {
           this.$router.push('/kanban')
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+          if (err === 'DuplicateEmail')
+            Swal.fire(
+              'Duplicate Email',
+              'This email already registered!',
+              'warning'
+            )
+          this.isLoading = false
+        })
     }
   }
 }

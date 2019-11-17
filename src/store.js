@@ -55,7 +55,7 @@ export default new Vuex.Store({
         .get()
         .then(userRef => {
           if (userRef.exists) {
-            return Promise.reject('Email already registered')
+            return Promise.reject('DuplicateEmail')
           }
           return db
             .collection('users')
@@ -117,12 +117,20 @@ export default new Vuex.Store({
         context.commit('SET_KANBAN_LIST', kanbanSnapshot)
       })
     },
-    getKanbanName(context, id) {
-      db.collection('kanbans')
+    prepareKanban(context, id) {
+      return db
+        .collection('kanbans')
         .doc(id)
         .get()
         .then(kanbanRef => {
           context.commit('SET_KANBAN_NAME', kanbanRef.data().kanban_name)
+          if (!kanbanRef.data().members.includes(context.state.userEmail)) {
+            const members = kanbanRef.data().members
+            members.push(context.state.userEmail)
+            db.collection('kanbans')
+              .doc(id)
+              .update({ members })
+          }
         })
     },
     addTask(context, payload) {
