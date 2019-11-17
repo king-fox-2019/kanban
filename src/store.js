@@ -78,17 +78,21 @@ export default new Vuex.Store({
         .get()
         .then(userRef => {
           if (userRef.exists) {
-            if (userRef.data().email === payload.email) {
+            if (
+              userRef.data().email === payload.email &&
+              userRef.data().password === payload.password
+            ) {
               context.commit('SET_USER_EMAIL', payload.email)
               localStorage.setItem(
                 'access_email',
                 jwt.sign(payload.email, process.env.VUE_APP_JWT_SECRET)
               )
+
               return Promise.resolve()
             } else {
-              return Promise.reject('Invalid email/password')
+              return Promise.reject('WrongInput')
             }
-          } else return Promise.reject('Invalid email/password')
+          } else return Promise.reject('WrongInput')
         })
     },
     createKanban(context, payload) {

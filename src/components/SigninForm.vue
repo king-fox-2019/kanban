@@ -43,6 +43,8 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2'
+
 export default {
   data() {
     return {
@@ -62,7 +64,11 @@ export default {
         .then(() => {
           this.$router.push('/kanban')
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+          if (err === 'WrongInput')
+            Swal.fire('Wrong Input', 'Email/Password is wrong', 'warning')
+          this.isLoading = false
+        })
     }
   }
 }
