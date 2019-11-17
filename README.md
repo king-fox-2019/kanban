@@ -1,8 +1,14 @@
 # kanban
 
+<<<<<<< HEAD
 ## Deploy URL
 
 https://kanban-h8p2w3.firebaseapp.com/
+=======
+## Deployed URL
+
+[X Kanban](https://x-kanban.firebaseapp.com/)
+>>>>>>> more tidying up. add deploy url to readme
 
 ## Project setup
 

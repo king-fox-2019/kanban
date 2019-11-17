@@ -5,7 +5,9 @@
         class="button is-primary"
         v-show="tab === 'backlog'"
         @click="modalCreate = true"
-      >New Task</button>
+      >
+        New Task
+      </button>
     </div>
     <div class="tile is-ancestor">
       <div class="tile is-vertical is-parent">
@@ -21,7 +23,7 @@
               <p class="subtitle is-6">By: {{ item.data.assigner }}</p>
               <div class="content">{{ item.data.desc }}</div>
               <div class="content">
-                <p>Assignee: {{item.data.assignee}}</p>
+                <p>Assignee: {{ item.data.assignee }}</p>
               </div>
             </div>
           </div>
@@ -40,7 +42,7 @@
               <p class="subtitle is-6">By: {{ item.data.assigner }}</p>
               <div class="content">{{ item.data.desc }}</div>
               <div class="content">
-                <p>Assignee: {{item.data.assignee}}</p>
+                <p>Assignee: {{ item.data.assignee }}</p>
               </div>
             </div>
           </div>
@@ -59,7 +61,7 @@
               <p class="subtitle is-6">By: {{ item.data.assigner }}</p>
               <div class="content">{{ item.data.desc }}</div>
               <div class="content">
-                <p>Assignee: {{item.data.assignee}}</p>
+                <p>Assignee: {{ item.data.assignee }}</p>
               </div>
             </div>
           </div>
@@ -78,7 +80,7 @@
               <p class="subtitle is-6">By: {{ item.data.assigner }}</p>
               <div class="content">{{ item.data.desc }}</div>
               <div class="content">
-                <p>Assignee: {{item.data.assignee}}</p>
+                <p>Assignee: {{ item.data.assignee }}</p>
               </div>
             </div>
           </div>
@@ -86,8 +88,16 @@
       </div>
     </div>
 
-    <CreateTaskModal :members="members" v-if="modalCreate" @on-close-modal="modalCreate = false"></CreateTaskModal>
-    <KanbanDetailModal v-if="detailModal" :task="task" @on-close-modal="detailModal = false"></KanbanDetailModal>
+    <CreateTaskModal
+      :members="members"
+      v-if="modalCreate"
+      @on-close-modal="modalCreate = false"
+    ></CreateTaskModal>
+    <KanbanDetailModal
+      v-if="detailModal"
+      :task="task"
+      @on-close-modal="detailModal = false"
+    ></KanbanDetailModal>
   </section>
 </template>
 
@@ -188,7 +198,7 @@ export default {
 }
 </script>
 
-<style lang="scss" >
+<style lang="scss">
 .notification:hover {
   cursor: pointer;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

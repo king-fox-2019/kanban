@@ -4,14 +4,23 @@
     <div class="modal-card">
       <header class="modal-card-head has-background-info">
         <p class="modal-card-title has-text-light">Add New Task</p>
-        <button class="delete" aria-label="close" @click="$emit('on-close-modal')"></button>
+        <button
+          class="delete"
+          aria-label="close"
+          @click="$emit('on-close-modal')"
+        ></button>
       </header>
       <section class="modal-card-body has-background-light">
         <form class="container">
           <div class="field">
             <label class="label">Task Title</label>
             <div class="control">
-              <input class="input" type="text" placeholder="Do Something" v-model="title" />
+              <input
+                class="input"
+                type="text"
+                placeholder="Do Something"
+                v-model="title"
+              />
             </div>
           </div>
           <div class="field">
@@ -30,9 +39,7 @@
             <div class="select">
               <select v-model="assignee">
                 <option v-for="member of members" :key="member">
-                  {{
-                  member
-                  }}
+                  {{ member }}
                 </option>
               </select>
             </div>
@@ -44,8 +51,12 @@
           class="button is-primary"
           :class="{ 'is-loading': isLoading }"
           @click="createKanban"
-        >Add New Task</button>
-        <button class="button is-light" @click="$emit('on-close-modal')">Cancel</button>
+        >
+          Add New Task
+        </button>
+        <button class="button is-light" @click="$emit('on-close-modal')">
+          Cancel
+        </button>
       </footer>
     </div>
   </div>
