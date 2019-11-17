@@ -35,6 +35,7 @@ export default new Vuex.Store({
             localStorage.getItem('access_email'),
             process.env.VUE_APP_JWT_SECRET
           )
+        context.commit('SET_USER_EMAIL', userEmail)
         return db
           .collection('users')
           .where('email', '==', userEmail)
@@ -130,10 +131,47 @@ export default new Vuex.Store({
         .doc(payload.id)
         .collection('kanban_backlog')
         .add({
+          assigner: context.state.userEmail,
           title: payload.title,
           desc: payload.desc,
-          assignee: payload.assignee
+          assignee: payload.assignee,
+          status: 'backlog'
         })
+    },
+    deleteTask(context, payload) {
+      return db
+        .collection('kanbans')
+        .doc(payload.kanban_id)
+        .collection(`kanban_${payload.status}`)
+        .doc(payload.id)
+        .delete()
+    },
+    pushTask(context, payload) {
+      return db.runTransaction(async transaction => {
+        const kanbanRef = db.collection('kanbans').doc(payload.kanban_id)
+        const taskRef = kanbanRef
+          .collection(`kanban_${payload.status}`)
+          .doc(payload.id)
+        let newStatus = ''
+        switch (payload.status) {
+          case 'backlog':
+            newStatus = 'todo'
+            break
+          case 'todo':
+            newStatus = 'doing'
+            break
+          case 'doing':
+            newStatus = 'done'
+            break
+        }
+        const newTask = await taskRef.get()
+        transaction
+          .set(kanbanRef.collection(`kanban_${newStatus}`).doc(), {
+            ...newTask.data(),
+            status: newStatus
+          })
+          .delete(taskRef)
+      })
     }
   },
   modules: {}

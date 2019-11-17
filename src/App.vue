@@ -43,6 +43,8 @@ $dark: #31393c;
 $dark-invert: findColorInvert($dark);
 $success: #ccc5b9;
 $success-invert: findColorInvert($success);
+$danger: rgb(240, 0, 0);
+$danger-invert: findColorInvert($danger);
 
 $link: $primary;
 $link-invert: $primary-invert;
@@ -102,10 +104,6 @@ $colors: (
 );
 
 // $warning: $yellow !default;
-// $danger: $red !default;
-
-// $light: $white-ter !default;
-// $dark: $grey-darker !default;
 
 // $link: $blue !default;
 // $link-invert: $blue-invert !default;

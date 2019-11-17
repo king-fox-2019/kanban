@@ -13,25 +13,17 @@
           class="tile is-child notification is-info"
           v-for="item in arrangedKanban[0]"
           :key="item.id"
+          @click="showDetailModal(item)"
         >
           <div class="media">
-            <div class="media-left">
-              <figure class="image is-48x48">
-                <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image" />
-              </figure>
-            </div>
             <div class="media-content">
               <p class="title is-4">{{ item.data.title }}</p>
-              <p class="subtitle is-6">@johnsmith</p>
+              <p class="subtitle is-6">By: {{ item.data.assigner }}</p>
+              <div class="content">{{ item.data.desc }}</div>
+              <div class="content">
+                <p>Assignee: {{item.data.assignee}}</p>
+              </div>
             </div>
-          </div>
-          <div class="content">
-            {{ item.data.desc }}
-            <a>@bulmaio</a>.
-            <a href="#">#css</a>
-            <a href="#">#responsive</a>
-            <br />
-            <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
           </div>
         </article>
       </div>
@@ -40,25 +32,17 @@
           class="tile is-child notification is-info"
           v-for="item in arrangedKanban[1]"
           :key="item.id"
+          @click="showDetailModal(item)"
         >
           <div class="media">
-            <div class="media-left">
-              <figure class="image is-48x48">
-                <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image" />
-              </figure>
-            </div>
             <div class="media-content">
               <p class="title is-4">{{ item.data.title }}</p>
-              <p class="subtitle is-6">@johnsmith</p>
+              <p class="subtitle is-6">By: {{ item.data.assigner }}</p>
+              <div class="content">{{ item.data.desc }}</div>
+              <div class="content">
+                <p>Assignee: {{item.data.assignee}}</p>
+              </div>
             </div>
-          </div>
-          <div class="content">
-            {{ item.data.desc }}
-            <a>@bulmaio</a>.
-            <a href="#">#css</a>
-            <a href="#">#responsive</a>
-            <br />
-            <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
           </div>
         </article>
       </div>
@@ -67,25 +51,17 @@
           class="tile is-child notification is-info"
           v-for="item in arrangedKanban[2]"
           :key="item.id"
+          @click="showDetailModal(item)"
         >
           <div class="media">
-            <div class="media-left">
-              <figure class="image is-48x48">
-                <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image" />
-              </figure>
-            </div>
             <div class="media-content">
               <p class="title is-4">{{ item.data.title }}</p>
-              <p class="subtitle is-6">@johnsmith</p>
+              <p class="subtitle is-6">By: {{ item.data.assigner }}</p>
+              <div class="content">{{ item.data.desc }}</div>
+              <div class="content">
+                <p>Assignee: {{item.data.assignee}}</p>
+              </div>
             </div>
-          </div>
-          <div class="content">
-            {{ item.data.desc }}
-            <a>@bulmaio</a>.
-            <a href="#">#css</a>
-            <a href="#">#responsive</a>
-            <br />
-            <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
           </div>
         </article>
       </div>
@@ -94,41 +70,36 @@
           class="tile is-child notification is-info"
           v-for="item in arrangedKanban[3]"
           :key="item.id"
+          @click="showDetailModal(item)"
         >
           <div class="media">
-            <div class="media-left">
-              <figure class="image is-48x48">
-                <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image" />
-              </figure>
-            </div>
             <div class="media-content">
               <p class="title is-4">{{ item.data.title }}</p>
-              <p class="subtitle is-6">@johnsmith</p>
+              <p class="subtitle is-6">By: {{ item.data.assigner }}</p>
+              <div class="content">{{ item.data.desc }}</div>
+              <div class="content">
+                <p>Assignee: {{item.data.assignee}}</p>
+              </div>
             </div>
-          </div>
-          <div class="content">
-            {{ item.data.desc }}
-            <a>@bulmaio</a>.
-            <a href="#">#css</a>
-            <a href="#">#responsive</a>
-            <br />
-            <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
           </div>
         </article>
       </div>
     </div>
 
     <CreateTaskModal :members="members" v-if="modalCreate" @on-close-modal="modalCreate = false"></CreateTaskModal>
+    <KanbanDetailModal v-if="detailModal" :task="task" @on-close-modal="detailModal = false"></KanbanDetailModal>
   </section>
 </template>
 
 <script>
 import CreateTaskModal from '@/components/kanban/CreateTaskModal'
+import KanbanDetailModal from '@/components/kanban/KanbanDetailModal'
 import db from '../../../config/firebaseconfig'
 
 export default {
   components: {
-    CreateTaskModal
+    CreateTaskModal,
+    KanbanDetailModal
   },
   data() {
     return {
@@ -139,7 +110,15 @@ export default {
         done: []
       },
       modalCreate: false,
-      members: []
+      members: [],
+      detailModal: false,
+      task: null
+    }
+  },
+  methods: {
+    showDetailModal(task) {
+      this.task = task
+      this.detailModal = true
     }
   },
   computed: {
@@ -212,4 +191,9 @@ export default {
 }
 </script>
 
-<style></style>
+<style lang="scss" >
+.notification:hover {
+  cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+</style>
