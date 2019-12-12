@@ -1,7 +1,9 @@
 <template>
   <div>
-    <b-navbar toggleable="lg" type="dark" variant="info">
-      <b-navbar-brand href="/">Kanban</b-navbar-brand>
+    <b-navbar toggleable="lg" type="dark" variant="dark">
+      <b-navbar-brand style="font-family: 'Lilita One', cursive !important;" href="/">
+        Kanban
+      </b-navbar-brand>
         <b-navbar-nav class="ml-auto">
           <b-nav-form>
             <b-form-input size="sm" class="mr-sm-2" v-model="title" placeholder="Title">
@@ -26,10 +28,14 @@ export default {
   methods: {
     createNew() {
       this.$emit('add', this.title);
+      this.title = '';
     },
   },
 };
 </script>
 
 <style scoped>
+/* b-navbar-brand {
+  font-family: 'Lilita One', cursive !important;
+} */
 </style>

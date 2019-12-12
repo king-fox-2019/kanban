@@ -1,11 +1,14 @@
 <template>
   <div class="mb-5 mt-3">
-    <b-card bg-variant="dark" class="mt-2 mb-2" v-for="kanban in data"
-      :key="kanban.id"
+    <b-card bg-variant="dark" class="mt-2 mb-2 customeborder"
+      border-variant="warning"
       text-variant="white"
-      :title="kanban.title">
-      <b-button href="#" @click.prevent="next(kanban)" variant="primary">NEXT</b-button>
+      :title="data.title">
+      <b-button class="customeborder" href="#" @click.prevent="next(data)" variant="primary">
+        NEXT
+      </b-button>
     </b-card>
+    <hr>
   </div>
 </template>
 
@@ -13,7 +16,7 @@
 export default {
   props: {
     data: {
-      type: Array,
+      type: Object,
     },
   },
   data() {
@@ -29,4 +32,7 @@ export default {
 </script>
 
 <style scoped>
+.customeborder {
+  border-radius: 5rem !important;
+}
 </style>

@@ -4,28 +4,32 @@
     <b-container class="mt-5">
       <b-row id="content">
         <b-col class="cardsection" id="backlog" cols="3">
-          <h1>BackLog</h1>
-          <div id="kanban">
-            <backlog v-for="kanban in backlog" :key="kanban.id" :data="kanban" @next="next"/>
-          </div>
+          <b-card bg-variant="danger" text-variant="white" header="Backlog" class="text-center">
+            <div id="kanban">
+              <backlog v-for="kanban in backlog" :key="kanban.id" :data="kanban" @next="next"/>
+            </div>
+          </b-card>
         </b-col>
         <b-col class="cardsection" id="todo" cols="3">
-          <h1>Todo</h1>
-          <div id="kanban">
-            <todo v-for="kanban in todoData" :key="kanban.id" :data="kanban" @next="next"/>
-          </div>
+          <b-card bg-variant="primary" text-variant="white" header="To Do" class="text-center">
+            <div id="kanban">
+              <todo v-for="kanban in todoData" :key="kanban.id" :data="kanban" @next="next"/>
+            </div>
+          </b-card>
         </b-col>
         <b-col class="cardsection" id="ongoing" cols="3">
-          <h1>On Going</h1>
-          <div id="kanban">
-            <ongoing v-for="kanban in ongoing" :key="kanban.id" :data="kanban" @next="next"/>
-          </div>
+          <b-card bg-variant="info" text-variant="white" header="On Going" class="text-center">
+            <div id="kanban">
+              <ongoing v-for="kanban in ongoing" :key="kanban.id" :data="kanban" @next="next"/>
+            </div>
+          </b-card>
         </b-col>
         <b-col class="cardsection" id="done" cols="3">
-          <h1>Done</h1>
-          <div id="kanban">
-            <done v-for="kanban in done" :key="kanban.id" :data="kanban" @next="next"/>
-          </div>
+          <b-card bg-variant="success" text-variant="white" header="Done" class="text-center">
+            <div id="kanban">
+              <done v-for="kanban in done" :key="kanban.id" :data="kanban" @next="next"/>
+            </div>
+          </b-card>
         </b-col>
       </b-row>
     </b-container>
@@ -33,8 +37,7 @@
 </template>
 
 <script>
-import card from '@/components/cardTest.vue';
-// import card from '@/components/card.vue';
+import card from '@/components/card.vue';
 import navbar from '@/components/navbar.vue';
 import db from '../config/firestore';
 
@@ -108,17 +111,6 @@ export default {
 </script>
 
 <style>
-b-col {
-  padding: 1rem;
-}
-h1 {
-  padding: 0.5rem;
-  font-family: 'Lilita One', cursive;
-}
-.cardsection {
-  border: 2px solid blueviolet;
-  border-radius: 2rem;
-}
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
