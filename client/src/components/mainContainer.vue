@@ -1,6 +1,6 @@
 <template>
     <div>
-        <new-card @loadNewData="readData"/>
+        <new-card/>
         <hr>
         <p></p>
         <sui-grid :columns="4">
@@ -11,7 +11,7 @@
                         <sui-card-content class="right floated">{{ open.length}} Cards</sui-card-content>
                     </sui-card-content>
                     <sui-card-content id="card-open-body">
-                        <card-container :data="open" @loadNewData="readData"/>
+                        <card-container :data="open"/>
                     </sui-card-content>
                 </sui-card>
             </sui-grid-column>
@@ -22,7 +22,7 @@
                         <sui-card-content class="right floated">{{ inProgress.length}} Cards</sui-card-content>
                     </sui-card-content>
                     <sui-card-content id="card-inprogress-body">
-                        <card-container :data="inProgress" @loadNewData="readData"/>
+                        <card-container :data="inProgress" />
                     </sui-card-content>
                 </sui-card>
             </sui-grid-column>
@@ -33,7 +33,7 @@
                         <sui-card-content class="right floated">{{ ready.length}} Cards</sui-card-content>
                     </sui-card-content>
                     <sui-card-content id="card-ready-body">
-                        <card-container :data="ready" @loadNewData="readData"/>
+                        <card-container :data="ready" />
                     </sui-card-content>
                 </sui-card>
             </sui-grid-column>
@@ -44,7 +44,7 @@
                         <sui-card-content class="right floated">{{ completed.length}} Cards</sui-card-content>
                     </sui-card-content>
                     <sui-card-content id="card-closed-body">
-                        <card-container :data="completed" @loadNewData="readData"/>
+                        <card-container :data="completed" />
                     </sui-card-content>
                 </sui-card>
             </sui-grid-column>

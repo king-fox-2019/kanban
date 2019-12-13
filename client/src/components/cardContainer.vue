@@ -25,9 +25,6 @@
             data: Array
         },
         methods: {
-            loadNewData: function () {
-                this.$emit('loadNewData')
-            }
         },
         components: {
             card
