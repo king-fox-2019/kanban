@@ -1,11 +1,11 @@
 <template>
   <div>
     <!-- <div id="nav"> -->
-      <b-navbar toggleable="lg" type="light" class="nav mb-4">
-        <b-navbar-brand style="color: white" class="mb-4">カンバン</b-navbar-brand>
+      <b-navbar toggleable="lg" type="light" class="nav">
+        <b-navbar-brand style="color: white">カンバン</b-navbar-brand>
         <b-navbar-nav class="ml-auto">
           <b-nav-item v-b-modal.modalTask>
-            <p style="color:white; font-weight:bold;" class="mb-4">
+            <p style="color:white; font-weight:bold;" class="mt-3">
               <i class="fas fa-feather-alt"></i>
             </p>
           </b-nav-item>
