@@ -47,7 +47,7 @@ export default {
   methods: {
     getData() {
       Swal.showLoading();
-      db.collection("listtodo").onSnapshot(querySnapshot => {
+      db.collection("kanbans").onSnapshot(querySnapshot => {
         Swal.close();
         this.cards.forEach(el => {
           el.kanbans = [];
@@ -60,7 +60,7 @@ export default {
           });
         });
       });
-      console.log(this.cards);
+      // console.log(this.cards);
     }
   },
   created() {

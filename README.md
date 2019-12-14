@@ -3,7 +3,7 @@
 # client
 
 ```
-link deploy : https://kanban-b5e79.firebaseapp.com/
+link deploy : https://kanban-1.firebaseapp.com
 ```
 
 ## Project setup

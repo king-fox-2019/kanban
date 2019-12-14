@@ -4,9 +4,7 @@
       <b-card :header="data.title" header-tag="header">
         <b-card-text>Point : {{ data.point }}</b-card-text>
         <b-card-text>Assigned To : {{ data.assigned }}</b-card-text>
-        <b-button @click="showModal(data.id)" variant="primary"
-          >Show Detail</b-button
-        >
+        <b-button @click="showModal(data.id)" variant="primary">Show Detail</b-button>
       </b-card>
     </b-card-text>
     <b-modal ref="my-modal" hide-footer title="Detail :">
@@ -28,34 +26,22 @@
             v-if="detail.status == 'todo'"
             @click="goBack(detail.id)"
             variant="dark"
-            >Back Log</b-button
-          >
+          >Back Log</b-button>
           <b-button
             v-if="detail.status == 'backlog' || detail.status == 'doing'"
             @click="goTodo(detail.id)"
             variant="primary"
-            >Todo</b-button
-          >
-          <b-button @click="remove(detail.id)" variant="danger"
-            >Delete</b-button
-          >
+          >Todo</b-button>
+          <b-button @click="remove(detail.id)" variant="danger">Delete</b-button>
           <b-button
             v-if="detail.status == 'todo' || detail.status == 'done'"
             @click="goDoing(detail.id)"
             variant="success"
-            >Doing</b-button
-          >
-          <b-button
-            v-if="detail.status == 'doing'"
-            @click="goDone(detail.id)"
-            variant="info"
-            >Done</b-button
-          >
+          >Doing</b-button>
+          <b-button v-if="detail.status == 'doing'" @click="goDone(detail.id)" variant="info">Done</b-button>
         </div>
       </div>
-      <b-button class="mt-3" variant="outline-danger" block @click="hideModal"
-        >Close Me</b-button
-      >
+      <b-button class="mt-3" variant="outline-danger" block @click="hideModal">Close Me</b-button>
     </b-modal>
   </div>
 </template>
@@ -94,7 +80,7 @@ export default {
         cancelButtonText: "No, keep it"
       }).then(result => {
         if (result.value) {
-          db.collection("listtodo")
+          db.collection("kanbans")
             .doc(id)
             .delete()
             .then(function() {
@@ -117,7 +103,7 @@ export default {
     goTodo(id) {
       this.hideModal();
       Swal.showLoading();
-      db.collection("listtodo")
+      db.collection("kanbans")
         .doc(id)
         .update({
           status: "todo"
@@ -132,7 +118,7 @@ export default {
     },
     goDone(id) {
       this.hideModal();
-      db.collection("listtodo")
+      db.collection("kanbans")
         .doc(id)
         .update({
           status: "done"
@@ -146,7 +132,7 @@ export default {
     },
     goDoing(id) {
       this.hideModal();
-      db.collection("listtodo")
+      db.collection("kanbans")
         .doc(id)
         .update({
           status: "doing"
@@ -160,7 +146,7 @@ export default {
     },
     goBack(id) {
       this.hideModal();
-      db.collection("listtodo")
+      db.collection("kanbans")
         .doc(id)
         .update({
           status: "backlog"
