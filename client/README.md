@@ -1,9 +1,5 @@
 # client
-
-## Project setup
-```
-npm install
-```
+## deployed https://miniwp-261307.firebaseapp.com
 
 ### Compiles and hot-reloads for development
 ```
