@@ -1,10 +1,48 @@
 <template>
   <div>
-    <h1>(in) Kamben</h1>
+    <Header />
+    <div class="mt-3 px-5">
+      <b-row>
+        <b-col sm="3" class="mb-4">
+          <BacklogBoard
+            :todos="backlogTodos"
+            boardTitle="Back-log"
+            backgroundType="warning"
+          />
+        </b-col>
+
+        <b-col sm="3" class="mb-4">
+          <TodoBoard
+            :todos="todoTodos"
+            boardTitle="Todo"
+            backgroundType="info"
+          />
+        </b-col>
+
+        <b-col sm="3" class="mb-4">
+          <DoingBoard
+            :todos="doingTodos"
+            boardTitle="Doing"
+            backgroundType="primary"
+          />
+        </b-col>
+
+        <b-col sm="3" class="mb-4">
+          <DoneBoard
+            :todos="doneTodos"
+            boardTitle="Done"
+            backgroundType="success"
+          />
+        </b-col>
+      </b-row>
+    </div>
   </div>
 </template>
 
 <script>
+import Header from "@/components/Header.vue";
+import BoardTodo from "@/components/BoardTodo.vue";
+
 export default {
   name: "home",
   data: function() {
@@ -12,6 +50,27 @@ export default {
       todos: [],
       listener: null
     };
+  },
+  components: {
+    Header,
+    BacklogBoard: BoardTodo,
+    TodoBoard: BoardTodo,
+    DoingBoard: BoardTodo,
+    DoneBoard: BoardTodo
+  },
+  computed: {
+    backlogTodos: function() {
+      return this.todos.filter(todo => todo.status === "back-log");
+    },
+    todoTodos: function() {
+      return this.todos.filter(todo => todo.status === "todo");
+    },
+    doingTodos: function() {
+      return this.todos.filter(todo => todo.status === "doing");
+    },
+    doneTodos: function() {
+      return this.todos.filter(todo => todo.status === "done");
+    }
   },
   created() {
     this.listener = this.$firestore;
