@@ -34,7 +34,7 @@
           </b-form-group>
 
           <div class="button-wrapper">
-            
+
             <b-button
               v-if="sendTask.status === 'todo'"
               @click="swapBacklog(sendTask.id)"
@@ -46,9 +46,9 @@
               @click="swapTodo(sendTask.id)"
               variant="outline-warning"
             >Todo</b-button>
-            
+
             <b-button @click="deleteTask(sendTask.id)" variant="danger">Delete</b-button>
-            
+
             <b-button
               v-if="sendTask.status === 'todo' || sendTask.status === 'done'"
               @click="swapDoing(sendTask.id)"
@@ -56,8 +56,8 @@
             >Doing</b-button>
 
             <b-button v-if="sendTask.status === 'doing'" @click="swapDone(sendTask.id)" variant="outline-success">Done</b-button>
-          </div> 
-          
+          </div>
+
         </b-form>
 
       </b-form>
@@ -67,9 +67,9 @@
 <script>
 import db from '../../config/firebase'
 export default {
-  data() {
+  data () {
     return {
-      
+
     }
   },
   props: {
@@ -78,82 +78,81 @@ export default {
     }
   },
   methods: {
-    showDetail(id) {
+    showDetail (id) {
       this.$bvModal.show(id)
     },
-    swapBacklog(id) {
-      this.$bvModal.hide(id);
-      this.$bvModal.show('modal-loading');
-      db.collection("kanban")
+    swapBacklog (id) {
+      this.$bvModal.hide(id)
+      this.$bvModal.show('modal-loading')
+      db.collection('kanban')
         .doc(id)
         .update({
-          status: "backlog"
+          status: 'backlog'
         })
         .then(_ => {
-          this.$bvModal.hide('modal-loading');
+          this.$bvModal.hide('modal-loading')
         })
         .catch(err => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     },
-    swapTodo(id) {
-      this.$bvModal.hide(id);
-      this.$bvModal.show('modal-loading');
-      db.collection("kanban")
+    swapTodo (id) {
+      this.$bvModal.hide(id)
+      this.$bvModal.show('modal-loading')
+      db.collection('kanban')
         .doc(id)
         .update({
-          status: "todo"
+          status: 'todo'
         })
         .then(_ => {
-          this.$bvModal.hide('modal-loading');
+          this.$bvModal.hide('modal-loading')
         })
         .catch(err => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     },
-    swapDoing(id) {
-      this.$bvModal.hide(id);
-      this.$bvModal.show('modal-loading');
-      db.collection("kanban")
+    swapDoing (id) {
+      this.$bvModal.hide(id)
+      this.$bvModal.show('modal-loading')
+      db.collection('kanban')
         .doc(id)
         .update({
-          status: "doing"
+          status: 'doing'
         })
         .then(_ => {
-          this.$bvModal.hide('modal-loading');
+          this.$bvModal.hide('modal-loading')
         })
         .catch(err => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     },
-    swapDone(id) {
-      this.$bvModal.hide(id);
-      this.$bvModal.show('modal-loading');
-      db.collection("kanban")
+    swapDone (id) {
+      this.$bvModal.hide(id)
+      this.$bvModal.show('modal-loading')
+      db.collection('kanban')
         .doc(id)
         .update({
-          status: "done"
+          status: 'done'
         })
         .then(_ => {
-          this.$bvModal.hide('modal-loading');
+          this.$bvModal.hide('modal-loading')
         })
         .catch(err => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     },
-    deleteTask(id) {
-      this.$bvModal.hide(id);
-      this.$bvModal.show('modal-loading');
-      db.collection("kanban")
+    deleteTask (id) {
+      this.$bvModal.hide(id)
+      this.$bvModal.show('modal-loading')
+      db.collection('kanban')
         .doc(id)
         .delete()
         .then(_ => {
-          this.$bvModal.hide('modal-loading');
+          this.$bvModal.hide('modal-loading')
         })
-        .catch(function(err) {
-          console.error(err);
-        });
-
+        .catch(function (err) {
+          console.error(err)
+        })
     }
   }
 }

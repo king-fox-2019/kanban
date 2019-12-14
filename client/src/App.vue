@@ -3,7 +3,7 @@
     <NavBar />
     <b-container fluid class="task-board">
       <b-row>
-        <BoardItem :sendData="dataBacklog"></BoardItem>
+        <BoardItem :sendData="dataBacklog" />
         <BoardItem :sendData="dataTodo" />
         <BoardItem :sendData="dataDoing" />
         <BoardItem :sendData="dataDone" />
@@ -18,55 +18,54 @@ import NavBar from './components/NavBar.vue'
 import db from '../config/firebase'
 
 export default {
-  
+
   name: 'app',
   data () {
     return {
 
       dataBacklog: {
         title: 'Backlog',
-        color: 'danger',  
+        color: 'danger',
         tasks: []
       },
       dataTodo: {
         title: 'Todo',
-        color: 'warning',  
+        color: 'warning',
         tasks: []
       },
       dataDoing: {
         title: 'Doing',
-        color: 'info',  
+        color: 'info',
         tasks: []
       },
       dataDone: {
         title: 'Done',
-        color: 'success',  
+        color: 'success',
         tasks: []
       }
 
     }
   },
   methods: {
-    getData() {
-      db.collection("kanban").onSnapshot(querySnapshot => {
-        
-        this.dataBacklog.tasks = [],
-        this.dataTodo.tasks = [],
-        this.dataDoing.tasks = [],
+    getData () {
+      db.collection('kanban').onSnapshot(querySnapshot => {
+        this.dataBacklog.tasks = []
+        this.dataTodo.tasks = []
+        this.dataDoing.tasks = []
         this.dataDone.tasks = []
 
         querySnapshot.forEach(doc => {
-          if (doc.data().status === "backlog") {
-            this.dataBacklog.tasks.push({id: doc.id, ...doc.data()})
+          if (doc.data().status === 'backlog') {
+            this.dataBacklog.tasks.push({ id: doc.id, ...doc.data() })
           }
-          if (doc.data().status === "todo") {
-            this.dataTodo.tasks.push({id: doc.id, ...doc.data()})
+          if (doc.data().status === 'todo') {
+            this.dataTodo.tasks.push({ id: doc.id, ...doc.data() })
           }
-          if (doc.data().status === "doing") {
-            this.dataDoing.tasks.push({id: doc.id, ...doc.data()})
+          if (doc.data().status === 'doing') {
+            this.dataDoing.tasks.push({ id: doc.id, ...doc.data() })
           }
-          if (doc.data().status === "done") {
-            this.dataDone.tasks.push({id: doc.id, ...doc.data()})
+          if (doc.data().status === 'done') {
+            this.dataDone.tasks.push({ id: doc.id, ...doc.data() })
           }
         })
       })

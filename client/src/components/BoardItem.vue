@@ -18,11 +18,11 @@ import CardItem from './CardItem'
 
 export default {
   name: 'BoardItem',
-  
+
   data () {
     return {
     }
-  }, 
+  },
   props: {
     sendData: {
       type: Object

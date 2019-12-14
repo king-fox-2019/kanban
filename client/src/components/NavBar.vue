@@ -4,7 +4,7 @@
       <h3>Kanban Board</h3>
     </div>
     <b-button v-b-modal.modal-new-task variant="primary">New Task</b-button>
-    
+
     <b-modal id="modal-loading" centered hide-header hide-footer>
       <div class="center-loading">
         <b-spinner label="Loading..."></b-spinner>
@@ -15,11 +15,11 @@
       <b-form>
         <b-form @submit.prevent="onSubmit" @reset="onReset">
           <b-form-group id="input-group-1" label="Task Title:" label-for="input-1">
-            <b-form-input 
-              id="input-1" 
-              v-model="form.title" 
-              type="text" 
-              required 
+            <b-form-input
+              id="input-1"
+              v-model="form.title"
+              type="text"
+              required
               placeholder="Enter task title..."
             ></b-form-input>
           </b-form-group>
@@ -50,9 +50,9 @@
 
           <div class="button-wrapper">
             <b-button type="submit" variant="primary">Submit</b-button>
-            <b-button class="mr-3" type="reset" variant="danger" >Reset</b-button> 
-          </div> 
-          
+            <b-button class="mr-3" type="reset" variant="danger" >Reset</b-button>
+          </div>
+
         </b-form>
 
       </b-form>
@@ -76,13 +76,12 @@ export default {
   },
   methods: {
     onSubmit () {
-      
       this.$bvModal.hide('modal-new-task')
       this.$bvModal.show('modal-loading')
-      
-      const { title, description, point, assignTo } = this.form;
-      
-      db.collection("kanban")
+
+      const { title, description, point, assignTo } = this.form
+
+      db.collection('kanban')
         .add({
           title,
           description,
@@ -91,17 +90,16 @@ export default {
           status: 'backlog'
         })
         .then(() => {
-          this.$bvModal.hide('modal-loading');
+          this.$bvModal.hide('modal-loading')
 
-          this.form.title = "";
-          this.form.description = "";
-          this.form.point = 0;
-          this.form.assignTo = "";
-
+          this.form.title = ''
+          this.form.description = ''
+          this.form.point = 0
+          this.form.assignTo = ''
         })
         .catch(err => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     },
     onReset () {
       this.title = ''
