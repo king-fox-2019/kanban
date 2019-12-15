@@ -70,6 +70,7 @@ export default new Vuex.Store({
               return Promise.resolve()
             })
         })
+        .catch(err => console.log(err))
     },
     signIn(context, payload) {
       return db
