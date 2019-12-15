@@ -1,0 +1,34 @@
+.error{
+background-attachment:scroll;
+background-clip:border-box;
+background-color:rgb(255, 246, 246);
+background-image:none;
+background-origin:padding-box;
+background-position-x:0%;
+background-position-y:0%;
+background-size:auto;
+border-bottom-left-radius:4px;
+border-bottom-right-radius:4px;
+border-top-left-radius:4px;
+border-top-right-radius:4px;
+box-shadow:rgb(224, 180, 180) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+box-sizing:border-box;
+color:rgb(159, 58, 56);
+display:block;
+font-family:Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
+font-size:11px;
+height:111.84px;
+line-height:15.7135px;
+min-height:11px;
+padding-bottom:11px;
+padding-left:16.5px;
+padding-right:16.5px;
+padding-top:11px;
+position:relative;
+text-align:center;
+text-size-adjust:100%;
+transition-delay:0s, 0s, 0s, 0s, 0s;
+transition-duration:0.1s, 0.1s, 0.1s, 0.1s, 0.1s;
+transition-property:opacity, color, background, box-shadow, -webkit-box-shadow;
+transition-timing-function:ease, ease, ease, ease, ease;
+}

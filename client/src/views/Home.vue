@@ -26,6 +26,7 @@
 import Navbar from "@/components/Navbar.vue";
 import Board from "@/components/Board.vue";
 import db from "../../config/firebase";
+import { auth, provider } from "../../config/auth";
 
 export default {
   name: "home",
@@ -157,6 +158,9 @@ export default {
     }
   },
   created() {
+    if (!localStorage.getItem("token")) {
+      this.$router.push({ path: "/login" });
+    }
     this.showAll();
   }
 };

@@ -20,6 +20,7 @@
             </a>
           </b-button>
         </b-navbar-nav>
+        <b-navbar-nav class="ml-auto" @click="logout">logout</b-navbar-nav>
       </b-collapse>
     </b-navbar>
 
@@ -66,7 +67,7 @@
         </b-form-group>
         <b-form-group label="Point" label-for="point-input">
           <b-form-input
-            type="text"
+            type="number"
             id="point-input"
             v-model="addTaskForm.point"
             placeholder="Task Point"
@@ -100,6 +101,7 @@
 
 <script>
 import db from "../../config/firebase";
+import { auth, provider } from "../../config/auth";
 export default {
   name: "Navbar",
   data() {
@@ -117,6 +119,7 @@ export default {
       this.addTaskForm.title = "";
       this.addTaskForm.desc = "";
       this.addTaskForm.assign = "";
+      this.addTaskForm.assign = 0;
     },
     tosumbit(bvModalEvt) {
       // Prevent modal from closing
@@ -147,6 +150,17 @@ export default {
           this.$nextTick(() => {
             this.$refs.modal.hide();
           });
+        });
+    },
+    logout() {
+      auth
+        .signOut()
+        .then(_ => {
+          localStorage.clear();
+          this.$router.push("/login");
+        })
+        .catch(err => {
+          Swal("Sorry something bad happen in our server");
         });
     }
   }
