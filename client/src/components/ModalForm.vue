@@ -20,6 +20,7 @@
         <b-form-input
           id="title-input"
           v-model="title"
+          placeholder="Title"
           required
         ></b-form-input>
       </b-form-group>
@@ -31,6 +32,7 @@
       >
         <b-form-textarea
           id="description-input"
+          placeholder="Enter task description"
           v-model="description"
           required
         ></b-form-textarea>
@@ -46,6 +48,7 @@
           v-model="point"
           type="number"
           min="0"
+          placeholder="Point"
           required
         ></b-form-input>
       </b-form-group>
@@ -123,6 +126,11 @@ export default {
         assignee: this.assignee,
         status: this.status
       })
+      this.title = ''
+      this.description = ''
+      this.point = 0
+      this.assignee = ''
+      this.status = ''
     }
   },
   mounted () {

@@ -93,14 +93,10 @@
 </template>
 
 <script>
-import ModalForm from './ModalForm'
 import db from '../../config'
 export default {
   name: 'ModalDetails',
   props: ['task'],
-  components: {
-    ModalForm
-  },
   data () {
     return {
       show: false
