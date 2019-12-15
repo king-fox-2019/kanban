@@ -22,10 +22,6 @@
       </v-col>
 
       <v-col class="mb-2" cols="12">
-        <v-text-field v-model="point" label="Task point:" outlined hide-details></v-text-field>
-      </v-col>
-
-      <v-col class="mb-2" cols="12">
         <v-text-field v-model="assignTo" label="Assign to:" outlined hide-details></v-text-field>
       </v-col>
 

@@ -26,7 +26,7 @@
           :tasks="todos" 
           :dropdown-categories="todoCategories"
           :head-color="todoHeadColor"
-          :color="todoColor" 
+          :body-color="todoColor" 
           />
       </div>
       <div class="col">
@@ -37,7 +37,7 @@
           :tasks="doings" 
           :dropdown-categories="doingCategories"
           :head-color="doingHeadColor"
-          :color="doingColor" 
+          :body-color="doingColor" 
           />
       </div>
       <div class="col">
@@ -48,7 +48,7 @@
           :tasks="dones" 
           :dropdown-categories="doneCategories"
           :head-color="doneHeadColor" 
-          :color="doneColor"
+          :body-color="doneColor"
           />
       </div>
     </div>
@@ -140,6 +140,10 @@ export default {
           console.error("Error adding document: ", error);
         });
     }
+  },
+
+  created() {
+    this.getData()
   },
 
   computed: {
