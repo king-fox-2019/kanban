@@ -1,4 +1,4 @@
 # kanban
 
 ## Deploy URL
-https://kanbanify.risan.xyz/#/
+https://kanbanify.risan.xyz
