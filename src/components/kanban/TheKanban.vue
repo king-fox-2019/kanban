@@ -104,7 +104,7 @@
 <script>
 import CreateTaskModal from '@/components/kanban/CreateTaskModal'
 import KanbanDetailModal from '@/components/kanban/KanbanDetailModal'
-import db from '@/config/db'
+import db from '../../config/db'
 
 export default {
   components: {
@@ -113,16 +113,12 @@ export default {
   },
   data() {
     return {
-      kanban_items: {
-        backlog: [],
-        todo: [],
-        doing: [],
-        done: []
-      },
+      kanban_items: [],
       modalCreate: false,
       members: [],
       detailModal: false,
-      task: null
+      task: null,
+      itemsSnapshot: null
     }
   },
   methods: {
@@ -137,7 +133,9 @@ export default {
     },
     arrangedKanban() {
       const arranger = [[], [], [], []]
-      const docRefs = this.kanban_items[this.tab]
+      const docRefs = this.kanban_items.filter(
+        docRef => docRef.data().status == this.tab
+      )
       for (let i = 0; i < docRefs.length; i += 4) {
         arranger[0].push({ id: docRefs[i].id, data: docRefs[i].data() })
         if (docRefs[i + 1])
@@ -166,34 +164,16 @@ export default {
       .then(kanbanRef => {
         this.members = kanbanRef.data().members
       })
-    db.collection('kanbans')
+    this.itemsSnapshot = db
+      .collection('kanbans')
       .doc(this.$route.params.id)
-      .collection('kanban_backlog')
+      .collection('kanban_items')
       .onSnapshot(kanbanSnapshot => {
-        this.kanban_items.backlog = kanbanSnapshot.empty
-          ? []
-          : kanbanSnapshot.docs
+        this.kanban_items = kanbanSnapshot.empty ? [] : kanbanSnapshot.docs
       })
-    db.collection('kanbans')
-      .doc(this.$route.params.id)
-      .collection('kanban_todo')
-      .onSnapshot(kanbanSnapshot => {
-        this.kanban_items.todo = kanbanSnapshot.empty ? [] : kanbanSnapshot.docs
-      })
-    db.collection('kanbans')
-      .doc(this.$route.params.id)
-      .collection('kanban_doing')
-      .onSnapshot(kanbanSnapshot => {
-        this.kanban_items.doing = kanbanSnapshot.empty
-          ? []
-          : kanbanSnapshot.docs
-      })
-    db.collection('kanbans')
-      .doc(this.$route.params.id)
-      .collection('kanban_done')
-      .onSnapshot(kanbanSnapshot => {
-        this.kanban_items.done = kanbanSnapshot.empty ? [] : kanbanSnapshot.docs
-      })
+  },
+  beforeDestroy() {
+    this.itemsSnapshot()
   }
 }
 </script>

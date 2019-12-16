@@ -38,9 +38,9 @@
             <label class="label">Assign To</label>
             <div class="select">
               <select v-model="assignee">
-                <option v-for="member of members" :key="member">{{
-                  member
-                }}</option>
+                <option v-for="member of members" :key="member">
+                  {{ member }}
+                </option>
               </select>
             </div>
           </div>

@@ -88,7 +88,6 @@ export default {
       this.$store
         .dispatch('deleteTask', {
           kanban_id: this.$route.params.id,
-          status: this.task.data.status,
           id: this.task.id
         })
         .then(() => this.$emit('on-close-modal'))
