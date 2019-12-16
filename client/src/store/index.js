@@ -5,10 +5,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    items: []
   },
   mutations: {
+    SET_ITEMS(state, items) {
+      state.items = items
+    }
   },
   actions: {
+    
   },
   modules: {
   }
