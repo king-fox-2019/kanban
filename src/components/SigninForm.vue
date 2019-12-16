@@ -73,9 +73,6 @@ export default {
           email: this.email,
           password: this.password
         })
-        .then(() => {
-          this.$router.replace('/kanban')
-        })
         .catch(err => {
           Swal.fire('Error', err.message, 'warning')
           this.isLoading = false

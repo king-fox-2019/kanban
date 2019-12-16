@@ -17,19 +17,10 @@
 
 <script>
 import SignupForm from '@/components/SignupForm'
-import auth from '../config/auth'
 
 export default {
   components: {
     SignupForm
-  },
-  created() {
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        this.$store.commit('SET_USER_EMAIL', user.email)
-        this.$router.replace('/kanban')
-      }
-    })
   }
 }
 </script>

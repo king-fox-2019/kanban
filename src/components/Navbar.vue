@@ -73,7 +73,6 @@ export default {
     onSignOut() {
       auth.signOut().then(() => {
         localStorage.clear()
-        this.$router.replace('/')
       })
     }
   }

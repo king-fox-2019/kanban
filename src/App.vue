@@ -10,11 +10,25 @@
 import '@/config/firebaseconfig'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import auth from './config/auth'
 
 export default {
   components: {
     Navbar,
     Footer
+  },
+  created() {
+    auth.onAuthStateChanged(user => {
+      const routePath = this.$route.path
+      if (user) {
+        this.$store.commit('SET_USER_EMAIL', user.email)
+        if (routePath.includes('signin') || routePath.includes('signup'))
+          this.$router.push('/kanban')
+      } else {
+        this.$store.commit('SET_USER_EMAIL', null)
+        if (routePath.includes('kanban')) this.$router.push('/signin')
+      }
+    })
   }
 }
 </script>
