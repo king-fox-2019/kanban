@@ -12,12 +12,12 @@
         <b-navbar-nav class="ml-auto">
           <b-button v-b-modal.new-task-modal size="sm" class="my-2 my-sm-0 add-btn" variant="dark">
             <a class="navbar-item" @click.prevent="addpost">
-              <span class="panel-icon" style="font-size: 20px; font-family: 'Lobster Two', cursive; font-weight: bolder;">
+              <span class="panel-icon" style="font-size: 20px; font-family: 'Lobster Two', cursive;">
                 <i class="fas fa-pen-fancy"></i> drop a task
               </span>
             </a>
           </b-button>
-          <b-button @click="logout">
+          <b-button class="logout" style="font-size: 20px; font-family: 'Lobster Two', cursive; margin-left: 5px;" @click="logout">
             logout
           </b-button>
         </b-navbar-nav>
@@ -32,13 +32,13 @@
       </template>
       <b-form ref="form" @submit.stop.prevent="submission" class="addForm">
         <b-form-group label="Title" label-for="title-input" type="text">
-          <b-form-input id="title-input" v-model="title" placeholder="Todo title" style="font-family: 'Sofia', cursive; font-size: 12px !important;" ></b-form-input>
+          <b-form-input id="title-input" v-model="title" placeholder="Todo title" style="font-family: 'Josefin Sans', sans-serif; font-size: 12px !important;" ></b-form-input>
         </b-form-group>
         <b-form-group label="Description" label-for="description-input">
-          <b-form-textarea id="description-input" v-model="description" placeholder="Task description" type="textarea" rows="3" max-rows="4" style="font-family: 'Sofia', cursive; font-size: 12px !important;"></b-form-textarea>
+          <b-form-textarea id="description-input" v-model="description" placeholder="Task description" type="textarea" rows="3" max-rows="4" style="font-family: 'Josefin Sans', sans-serif; font-size: 12px !important;"></b-form-textarea>
         </b-form-group>
         <b-form-group label="Assignee" label-for="assignee-input">
-          <b-form-input id="assignee-input" type="text" v-model="assignee" placeholder="Assignee" style="font-family: 'Sofia', cursive; font-size: 12px !important;"></b-form-input>
+          <b-form-input id="assignee-input" type="text" v-model="assignee" placeholder="Assignee" style="font-family: 'Josefin Sans', sans-serif; font-size: 12px !important;"></b-form-input>
         </b-form-group>
       </b-form>
       <template v-slot:modal-footer>
@@ -116,6 +116,8 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Lobster+Two&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Sofia&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Abel|Barlow|Josefin+Sans|Varela+Round&display=swap');
+
 
 @import url("https://fonts.googleapis.com/css?family=Homemade+Apple|Patrick+Hand+SC&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Covered+By+Your+Grace&display=swap");
@@ -126,7 +128,7 @@ export default {
 }
 .add-btn {
   border: none;
-  background-color: rgb(143, 127, 189) !important;
+  background-color: rgb(88, 108, 114) !important;
 }
 .heads {
   padding: 30px;

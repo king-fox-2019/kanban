@@ -1,10 +1,20 @@
 <template>
   <div>
     <div class="cards">
-      <b-card-group board class="content">
+      <b-card-group deck class="content">
         <b-card :header="task.title">
-          <p><strong>Description:</strong>{{ task.description }}</p>
-          <p><strong>For:</strong>{{ task.for }}</p>
+          <p>
+            <strong>Description:</strong>
+            {{ task.description }}
+          </p>
+          <p>
+            <strong>Point:</strong>
+            {{ task.point }}
+          </p>
+          <p>
+            <strong>For:</strong>
+            {{ task.assign }}
+          </p>
           <b-button class="btn-del" @click="remove" size="sm">Delete</b-button>
         </b-card>
       </b-card-group>

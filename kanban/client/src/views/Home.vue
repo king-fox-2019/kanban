@@ -52,9 +52,9 @@ export default {
     showAll () {
       db.collection('tasks').onSnapshot(querySnapshot => {
         let arrBackLog = []
-             arrTodo = []
-             arrOngoing = []
-             arrDone = []
+        let arrTodo = []
+        let arrOngoing = []
+        let arrDone = []
         querySnapshot.docs.forEach(task => {
           let objTask
       
@@ -121,6 +121,7 @@ export default {
   },
   watch: {
     backlog () {
+      // console.log('backlog')
       this.status.backlog.forEach(task => {
         if (task.status !== 'backlog') {
           db.collection('tasks').doc(task.id).update({
@@ -130,6 +131,7 @@ export default {
       })
     },
     todo () {
+      // console.log('todo')
       this.status.todo.forEach(task => {
         if (task.status !== 'todo') {
           db.collection('tasks').doc(task.id).update({
@@ -139,6 +141,7 @@ export default {
       })
     },
     ongoing () {
+      // console.log('ongoing')
       this.status.ongoing.forEach(task => {
         if (task.status !== 'ongoing') {
           db.collection('tasks').doc(task.id).update({
@@ -151,7 +154,9 @@ export default {
       // console.log('done')
       this.status.done.forEach(task => {
         if (task.status !== 'done') {
-          db.collection('tasks').doc(task.id).update({
+          db.collection('tasks')
+            .doc(task.id)
+            .update({
               status: 'done'
             })
         }
@@ -183,7 +188,7 @@ h6 {
   background-color: rgba(60, 63, 61, 0.87);
   padding: 20px;
   width: 80%;
-  overflow: scroll;
+  overflow: hidden;
   margin-top: 0px;
 }
 </style>

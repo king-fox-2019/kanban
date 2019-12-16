@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view :user="user"/>
+    <router-view :userEmail="userEmail"/>
   </div>
 </template>
 
@@ -31,10 +31,12 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Abel|Barlow|Josefin+Sans|Varela+Round&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Courgette&display=swap');
 #app {
   height: 100vh;
-  font-family: 'Courgette', cursive;
+  /* font-family: 'Courgette', cursive; */
+  font-family: 'Josefin Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
