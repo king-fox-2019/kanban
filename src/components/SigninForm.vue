@@ -74,11 +74,10 @@ export default {
           password: this.password
         })
         .then(() => {
-          this.$router.push('/kanban')
+          this.$router.replace('/kanban')
         })
         .catch(err => {
-          if (err === 'WrongInput')
-            Swal.fire('Wrong Input', 'Email/Password is wrong', 'warning')
+          Swal.fire('Error', err.message, 'warning')
           this.isLoading = false
         })
     }

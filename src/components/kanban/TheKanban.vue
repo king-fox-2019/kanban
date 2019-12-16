@@ -104,7 +104,7 @@
 <script>
 import CreateTaskModal from '@/components/kanban/CreateTaskModal'
 import KanbanDetailModal from '@/components/kanban/KanbanDetailModal'
-import db from '../../../config/firebaseconfig'
+import db from '@/config/db'
 
 export default {
   components: {

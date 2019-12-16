@@ -131,15 +131,10 @@ export default {
           password: this.password
         })
         .then(() => {
-          this.$router.push('/kanban')
+          this.$router.replace('/kanban')
         })
         .catch(err => {
-          if (err === 'DuplicateEmail')
-            Swal.fire(
-              'Duplicate Email',
-              'This email already registered!',
-              'warning'
-            )
+          Swal.fire('Error', err.message, 'warning')
           this.isLoading = false
         })
     }

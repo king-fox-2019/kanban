@@ -61,6 +61,8 @@
 </template>
 
 <script>
+import auth from '../config/auth'
+
 export default {
   data() {
     return {
@@ -69,9 +71,10 @@ export default {
   },
   methods: {
     onSignOut() {
-      localStorage.clear()
-      this.$store.commit('SET_USER_EMAIL', null)
-      this.$router.push('/')
+      auth.signOut().then(() => {
+        localStorage.clear()
+        this.$router.replace('/')
+      })
     }
   }
 }

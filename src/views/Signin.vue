@@ -17,10 +17,19 @@
 
 <script>
 import SigninForm from '@/components/SigninForm'
+import auth from '@/config/auth'
 
 export default {
   components: {
     SigninForm
+  },
+  created() {
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        this.$store.commit('SET_USER_EMAIL', user.email)
+        this.$router.replace('/kanban')
+      }
+    })
   }
 }
 </script>

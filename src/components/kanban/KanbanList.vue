@@ -25,7 +25,7 @@
           >
             <td>{{ kanban.kanban_name }}</td>
             <td>{{ kanban.description }}</td>
-            <td>{{ kanban.members }}</td>
+            <td>{{ kanban.members.length }}</td>
           </tr>
         </tbody>
       </table>
@@ -40,6 +40,7 @@
 
 <script>
 import CreateKanbanModal from '@/components/kanban/CreateKanbanModal'
+import db from '@/config/db'
 
 export default {
   components: {
@@ -47,7 +48,8 @@ export default {
   },
   data() {
     return {
-      modalCreate: false
+      modalCreate: false,
+      kanbanSnapshot: null
     }
   },
   methods: {
@@ -61,7 +63,23 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch('getKanbans')
+    this.kanbanSnapshot = db
+      .collection('kanbans')
+      .onSnapshot(kanbanSnapshot => {
+        kanbanSnapshot = kanbanSnapshot.docs.map(kanban => {
+          const { kanban_name, description, members } = kanban.data()
+          return {
+            id: kanban.id,
+            kanban_name,
+            description,
+            members
+          }
+        })
+        this.$store.commit('SET_KANBAN_LIST', kanbanSnapshot)
+      })
+  },
+  beforeDestroy() {
+    this.kanbanSnapshot()
   }
 }
 </script>

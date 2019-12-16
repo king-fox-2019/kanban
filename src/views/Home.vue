@@ -10,9 +10,18 @@
 </template>
 
 <script>
-// @ is an alias to /src
+import auth from '@/config/auth'
 
 export default {
-  name: 'home'
+  name: 'home',
+  created() {
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        this.$store.commit('SET_USER_EMAIL', user.email)
+      } else {
+        this.$store.commit('SET_USER_EMAIL', null)
+      }
+    })
+  }
 }
 </script>

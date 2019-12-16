@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from './store'
+import auth from './config/auth'
 
 Vue.use(VueRouter)
 
@@ -16,10 +17,13 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     beforeEnter(to, from, next) {
-      store
-        .dispatch('authenticate')
-        .then(() => next())
-        .catch(() => next('/signin'))
+      if (auth.currentUser) {
+        store.commit('SET_USER_EMAIL', auth.currentUser.email)
+        next()
+      } else {
+        store.commit('SET_USER_EMAIL', null)
+        next('/signin')
+      }
     },
     component: () =>
       import(/* webpackChunkName: "kanban" */ '@/views/Kanban.vue'),

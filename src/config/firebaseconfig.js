@@ -1,5 +1,6 @@
-import * as firebase from 'firebase/app'
+import firebase from 'firebase/app'
 import 'firebase/firestore'
+import 'firebase/auth'
 
 firebase.initializeApp({
   apiKey: process.env.VUE_APP_apiKey,
@@ -10,7 +11,3 @@ firebase.initializeApp({
   messagingSenderId: process.env.VUE_APP_messagingSenderId,
   appId: process.env.VUE_APP_appId
 })
-
-var db = firebase.firestore()
-
-export default db
