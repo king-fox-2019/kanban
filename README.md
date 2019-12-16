@@ -1,4 +1,4 @@
 # kanban
 
 ## Deploy URL
-https://kanban-h8p2w3.firebaseapp.com/
+https://kanban-92985.firebaseapp.com/
