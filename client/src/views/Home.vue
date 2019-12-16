@@ -7,11 +7,10 @@
     </div>
 
     <div class="flex justify-around">
-
-      <backlog :bgColor="'bg-red-200'"/>
-      <todo :bgColor="'bg-orange-200'"/>
-      <doing :bgColor="'bg-blue-200'"/>
-      <done :bgColor="'bg-green-200'"/>
+      <backlog :bgColor="'bg-red-200'" :boardName="'backlog'" />
+      <todo :bgColor="'bg-orange-200'" :boardName="'todo'" />
+      <doing :bgColor="'bg-blue-200'" :boardName="'doing'" />
+      <done :bgColor="'bg-green-200'" :boardName="'done'" />
     </div>
   </div>
 </template>
@@ -19,6 +18,8 @@
 <script>
 // @ is an alias to /src
 import KanbanContainer from '@/components/KanbanContainer.vue'
+
+const db = firebase.firestore()
 
 export default {
   name: 'home',

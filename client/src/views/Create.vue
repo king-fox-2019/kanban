@@ -1,6 +1,6 @@
 <template>
    <div class="flex justify-center items-center">
-      <form class="flex flex-col border border-indigo-300 items-center py-5 rounded-lg">
+      <form class="flex flex-col border border-indigo-300 items-center py-5 rounded-lg" @submit.prevent="addNewTask">
          <label class="font-semibold text-gray-700 text-lg mb-2">Kanban title</label>
          <input type="text" class="bg-transparent border-b mb-2 px-5" v-model='title' required />
          <label class="font-semibold text-gray-700 text-lg mb-2">Description</label>
@@ -15,6 +15,8 @@
 </template>
 
 <script>
+const db = firebase.firestore()
+
 export default {
    name: 'Create',
    data() {
@@ -24,11 +26,29 @@ export default {
          assignee: '',
          point: 0
       }
+   },
+   methods: {
+      addNewTask() {
+         db.collection('kanban').add({
+            title: this.title,
+            description: this.description,
+            assignee: this.assignee,
+            point: this.point,
+            status: 'backlog'
+         })
+         .then(docRef => {
+            console.log('document written with id:', docRef.id)
+            console.log('isi docRef', docRef)
+         })
+         .catch(error => {
+            console.log(error)
+         })
+      }
    }
 }
 </script>
 
-<style>
+<style scoped>
    div {
       height: 90vh;
    }

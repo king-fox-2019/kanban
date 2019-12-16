@@ -3,9 +3,9 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import '@/assets/css/tailwind.css'
-import '@/assets/firestore.js'
+// import './assets/firestore.js'
 
-const db = firebase.firestore()
+// const db = firebase.firestore()
 
 Vue.config.productionTip = false
 

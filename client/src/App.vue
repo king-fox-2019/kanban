@@ -4,6 +4,15 @@
   </div>
 </template>
 
+<script>
+import './assets/firestore.js'
+
+export default {
+  
+}
+</script>
+
+
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
