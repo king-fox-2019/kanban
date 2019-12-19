@@ -9,8 +9,9 @@
       </v-app-bar>
       <v-container>
         <v-row dense>
+
           <v-col v-for="(task, i) in tasks" :key="i" cols="12">
-            <v-card :color="bodyColor" dark>
+            <!-- <v-card :color="bodyColor" dark>
               <div class="d-flex flex-no-wrap justify-space-between">
                 <div>
                   <v-card-title class="headline" v-text="task.title"></v-card-title>
@@ -46,7 +47,14 @@
                   </div>
                 </div>
               </div>
-            </v-card>
+            </v-card> -->
+            <KanbanCard
+              :body-color="bodyColor"
+              :dropdown-categories="dropdownCategories"
+              :task="task"
+              @delete-task="deleteTask"
+              @move-task="moveTask"
+              />
           </v-col>
         </v-row>
       </v-container>
@@ -55,22 +63,23 @@
 </template>
 
 <script>
+import KanbanCard from './KanbanCard'
+
 export default {
   name: "kanban-container",
 
   props: ["title", "tasks", "dropdownCategories", "headColor", "bodyColor"],
+
+  components: {
+    KanbanCard
+  },
 
   methods: {
     deleteTask: function (taskId) {
       this.$emit("delete-task", taskId);
     },
 
-    moveTask: function (selected) {
-      const split = selected.target.id.split(",");
-      const category = split[0];
-      const taskId = split[1];
-      const payload = { category, taskId };
-
+    moveTask: function (payload) {
       this.$emit("move-task", payload);
     }
   }
