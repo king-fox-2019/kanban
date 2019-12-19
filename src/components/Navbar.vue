@@ -74,7 +74,6 @@ export default {
   },
   mounted() {
     window.addEventListener('click', () => {
-      console.log('triggered')
       this.burgerToggle = false
     })
   }

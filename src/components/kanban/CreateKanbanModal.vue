@@ -11,7 +11,7 @@
         ></button>
       </header>
       <section class="modal-card-body has-background-light">
-        <form class="container">
+        <form class="container" @submit.prevent="createKanban">
           <div class="field">
             <label class="label">Kanban Name</label>
             <div class="control">
@@ -53,6 +53,8 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2'
+
 export default {
   data() {
     return {
@@ -64,6 +66,10 @@ export default {
   methods: {
     createKanban() {
       this.isLoading = true
+      if (!this.kanban_name) {
+        this.isLoading = false
+        return Swal.fire('Title empty', 'Kanban Name required!', 'warning')
+      }
       this.$store
         .dispatch('createKanban', {
           kanban_name: this.kanban_name,
