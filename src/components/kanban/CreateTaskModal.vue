@@ -11,7 +11,7 @@
         ></button>
       </header>
       <section class="modal-card-body has-background-light">
-        <form class="container">
+        <form class="container" @submit.prevent="createKanban">
           <div class="field">
             <label class="label">Task Title</label>
             <div class="control">
@@ -63,6 +63,8 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2'
+
 export default {
   props: ['members'],
   data() {
@@ -76,6 +78,10 @@ export default {
   methods: {
     createKanban() {
       this.isLoading = true
+      if (!this.title) {
+        this.isLoading = false
+        return Swal.fire('Title empty', 'Title required!', 'warning')
+      }
       this.$store
         .dispatch('addTask', {
           id: this.$route.params.id,

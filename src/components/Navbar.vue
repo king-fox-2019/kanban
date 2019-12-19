@@ -16,8 +16,7 @@
         aria-label="menu"
         aria-expanded="false"
         data-target="kanbanNavbar"
-        @click="burgerToggle = !burgerToggle"
-        @blur="burgerToggle = false"
+        @click.stop="burgerToggle = !burgerToggle"
       >
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -30,12 +29,9 @@
       class="navbar-menu"
       :class="{ 'is-active': burgerToggle }"
     >
-      <div class="navbar-start">
+      <div class="navbar-start" v-if="$store.state.userEmail">
         <router-link class="navbar-item has-text-primary" tag="a" to="/kanban"
           >Kanban</router-link
-        >
-        <router-link class="navbar-item has-text-primary" tag="a" to="/about"
-          >About Creator</router-link
         >
       </div>
 
@@ -75,6 +71,12 @@ export default {
         localStorage.clear()
       })
     }
+  },
+  mounted() {
+    window.addEventListener('click', () => {
+      console.log('triggered')
+      this.burgerToggle = false
+    })
   }
 }
 </script>

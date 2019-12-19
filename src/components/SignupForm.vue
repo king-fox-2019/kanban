@@ -23,24 +23,9 @@
       </div>
     </div>
 
-    <!-- <div class="field">
-      <label class="label">Username</label>
-      <div class="control has-icons-left has-icons-right">
-        <input class="input is-success" type="text" placeholder="Text input" value="bulma" />
-        <span class="icon is-small is-left">
-          <i class="fas fa-user"></i>
-        </span>
-        <span class="icon is-small is-right">
-          <i class="fas fa-check"></i>
-        </span>
-      </div>
-      <p class="help is-success">This username is available</p>
-    </div>-->
-
     <div class="field">
       <label class="label">Email</label>
       <div class="control has-icons-left has-icons-right">
-        <!-- <input class="input is-danger" type="email" placeholder="Email input" /> -->
         <input
           class="input"
           type="email"
@@ -50,28 +35,19 @@
         <span class="icon is-small is-left">
           <i class="fas fa-envelope"></i>
         </span>
-        <!-- <span class="icon is-small is-right">
-          <i class="fas fa-exclamation-triangle"></i>
-        </span>-->
       </div>
-      <!-- <p class="help is-danger">This email is invalid</p> -->
     </div>
 
     <div class="field">
       <label class="label">Password</label>
       <div class="control has-icons-right">
-        <!-- <input class="input is-danger" type="email" placeholder="Email input" /> -->
         <input
           class="input"
           type="password"
           placeholder="Password"
           v-model="password"
         />
-        <!-- <span class="icon is-small is-right">
-          <i class="fas fa-exclamation-triangle"></i>
-        </span>-->
       </div>
-      <!-- <p class="help is-danger">This email is invalid</p> -->
     </div>
 
     <div class="field is-grouped">
@@ -84,9 +60,6 @@
           Sign Up
         </button>
       </div>
-      <!-- <div class="control">
-        <button class="button is-link is-light">Cancel</button>
-      </div>-->
     </div>
   </form>
 </template>
@@ -111,7 +84,7 @@ export default {
         this.isLoading = false
         return Swal.fire(
           'Email Empty',
-          'Email is required for sign in!',
+          'Email is required for sign up!',
           'warning'
         )
       }
@@ -119,7 +92,7 @@ export default {
         this.isLoading = false
         return Swal.fire(
           'Password Empty',
-          'Password is required for sign in!',
+          'Password is required for sign up!',
           'warning'
         )
       }
@@ -133,10 +106,9 @@ export default {
         .catch(err => {
           Swal.fire('Error', err.message, 'warning')
           this.isLoading = false
+          this.password = ''
         })
     }
   }
 }
 </script>
-
-<style></style>

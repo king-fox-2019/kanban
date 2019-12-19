@@ -23,10 +23,10 @@ export default {
       if (user) {
         this.$store.commit('SET_USER_EMAIL', user.email)
         if (routePath.includes('signin') || routePath.includes('signup'))
-          this.$router.push('/kanban')
+          this.$router.replace('/kanban')
       } else {
         this.$store.commit('SET_USER_EMAIL', null)
-        if (routePath.includes('kanban')) this.$router.push('/signin')
+        if (routePath.includes('kanban')) this.$router.replace('/signin')
       }
     })
   }
