@@ -28,6 +28,9 @@
         <button type="submit" class="btn btn-success">Submit</button>
       </form>
     </b-modal>
+
+    <b-modal id="detailTaskModal" title="Detail Task">
+    </b-modal>
   </b-container>
 </template>
 
