@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "kanban1": "kanban-1",
+    "default": "kanban-1"
+  }
+}
